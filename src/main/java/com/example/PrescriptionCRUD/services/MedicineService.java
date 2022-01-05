@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Data
 @Service
@@ -19,17 +21,38 @@ public class MedicineService {
     }
 
     public void addNewMedicine(Medicine medicine){
-        medicineRepository.save(medicine);
+        Optional<Medicine> medicineOptional = medicineRepository.findByName(medicine.getName());
+        if (medicineOptional.isPresent()){
+            throw new IllegalStateException("This medicine already exists in database!");
+        } else {
+            medicineRepository.save(medicine);
+        }
     }
 
     public void deleteMedicine(Long medicineId){
-        medicineRepository.deleteById(medicineId);
+        Optional<Medicine> medicineOptional = medicineRepository.findById(medicineId);
+        if (medicineOptional.isPresent()){
+            medicineRepository.deleteById(medicineId);
+        } else {
+            throw new IllegalStateException("This medicine is not present in database.");
+        }
     }
 
     @Transactional
     public void updateMedicine(Long medicineId, String name, String description){
-        Medicine medicine = medicineRepository.getById(medicineId);
-        medicine.setName(name);
-        medicine.setDescription(description);
+        if (medicineRepository.findById(medicineId).isPresent()){
+            Medicine medicine = medicineRepository.getById(medicineId);
+            if (name != null && !name.isEmpty() && Objects.equals(medicine.getName(), name)){
+                medicine.setName(name);
+            } else {
+                throw  new IllegalStateException("Invalid name.");
+            }
+            if (description != null && !description.isEmpty() && Objects.equals(medicine.getDescription(), description))
+            {
+                medicine.setDescription(description);
+            } else {
+                throw new IllegalStateException("Invalid description.");
+            }
+        }
     }
 }

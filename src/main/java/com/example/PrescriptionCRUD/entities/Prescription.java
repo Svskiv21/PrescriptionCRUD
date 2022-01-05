@@ -20,7 +20,7 @@ public class Prescription {
     private Long id;
 
     @NonNull
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prescription")
     private List<Medicine> medicines;
 
     @NonNull
