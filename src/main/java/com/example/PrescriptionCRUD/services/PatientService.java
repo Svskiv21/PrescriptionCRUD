@@ -16,6 +16,15 @@ public class PatientService {
 
     private final PatientRepository patientRepository;
 
+    public Patient getOnePatient(Long patientId){
+        Optional<Patient> optionalPatient = patientRepository.findById(patientId);
+        if (optionalPatient.isPresent()){
+            return optionalPatient.get();
+        } else {
+            throw new IllegalStateException("There is no patient with id: " + patientId + " in database.");
+        }
+    }
+
     public List<Patient> getAllPatients (){
         return patientRepository.findAll();
     }

@@ -26,7 +26,6 @@ public class Patient {
     @NonNull
     private String pesel;
 
-    @NonNull
     @OneToOne(mappedBy = "patient")
     private Prescription prescription;
 }

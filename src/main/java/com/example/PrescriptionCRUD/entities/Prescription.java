@@ -21,6 +21,7 @@ public class Prescription {
 
     @NonNull
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "prescription")
+    @Column
     private List<Medicine> medicines;
 
     @NonNull
@@ -34,8 +35,10 @@ public class Prescription {
     private Doctor doctor;
 
     @NonNull
+    @Column
     private Date dateOfIssue;
 
     @NonNull
+    @Column
     private Date expirationDate;
 }
