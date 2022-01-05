@@ -1,14 +1,14 @@
 package com.example.PrescriptionCRUD.entities;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table
-@Data
+@Getter
+@Setter
+@RequiredArgsConstructor
 @NoArgsConstructor
 public class Patient {
 
@@ -22,4 +22,8 @@ public class Patient {
 
     @NonNull
     private String lastName;
+
+    @NonNull
+    @OneToOne(mappedBy = "patient")
+    private Prescription prescription;
 }

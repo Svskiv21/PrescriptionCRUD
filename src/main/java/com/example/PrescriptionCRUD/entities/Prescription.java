@@ -1,17 +1,16 @@
 package com.example.PrescriptionCRUD.entities;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table
-@Data
+@Getter
+@Setter
+@RequiredArgsConstructor
 @NoArgsConstructor
 public class Prescription {
 
@@ -21,12 +20,17 @@ public class Prescription {
     private Long id;
 
     @NonNull
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Medicine> medicines;
 
     @NonNull
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "patient_id", referencedColumnName = "id")
     private Patient patient;
 
     @NonNull
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "doctor_id", referencedColumnName = "id")
     private Doctor doctor;
 
     @NonNull

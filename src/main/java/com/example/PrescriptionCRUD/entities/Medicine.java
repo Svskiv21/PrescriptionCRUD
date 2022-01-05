@@ -1,15 +1,15 @@
 package com.example.PrescriptionCRUD.entities;
 
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table
-@Data
+@Getter
+@Setter
+@RequiredArgsConstructor
 @NoArgsConstructor
 public class Medicine {
 
@@ -23,4 +23,9 @@ public class Medicine {
 
     @NonNull
     private String description;
+
+    @NonNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prescription_id", referencedColumnName = "id")
+    private Prescription prescription;
 }
