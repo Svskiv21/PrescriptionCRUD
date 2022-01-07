@@ -4,6 +4,7 @@ package com.example.PrescriptionCRUD.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
@@ -25,7 +26,6 @@ public class Medicine {
     private String description;
 
     @NonNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prescription_id", referencedColumnName = "id")
-    private Prescription prescription;
+    @ManyToMany(mappedBy = "medicines")
+    private List<Prescription> prescription;
 }

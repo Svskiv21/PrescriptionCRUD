@@ -20,8 +20,10 @@ public class Prescription {
     private Long id;
 
     @NonNull
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prescription")
-    @Column
+    @ManyToMany
+    @JoinTable(name = "prescription_meds",
+    joinColumns = @JoinColumn(name = "prescription_id"),
+    inverseJoinColumns = @JoinColumn(name = "medicine_id"))
     private List<Medicine> medicines;
 
     @NonNull
