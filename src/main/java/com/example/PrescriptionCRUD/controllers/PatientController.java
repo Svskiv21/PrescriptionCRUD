@@ -1,5 +1,6 @@
 package com.example.PrescriptionCRUD.controllers;
 
+import com.example.PrescriptionCRUD.dtos.PatientCreateDTO;
 import com.example.PrescriptionCRUD.entities.Patient;
 import com.example.PrescriptionCRUD.services.PatientService;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,7 @@ public class PatientController {
     private final PatientService patientService;
 
     @GetMapping(path = "/all-patients")
-    public List<Patient> getPatients(){
+    public List<PatientCreateDTO> getPatients(){
         return patientService.getAllPatients();
     }
 

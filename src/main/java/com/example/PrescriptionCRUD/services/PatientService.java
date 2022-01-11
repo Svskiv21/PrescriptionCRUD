@@ -1,6 +1,8 @@
 package com.example.PrescriptionCRUD.services;
 
+import com.example.PrescriptionCRUD.dtos.PatientCreateDTO;
 import com.example.PrescriptionCRUD.entities.Patient;
+import com.example.PrescriptionCRUD.mappers.PatientMapper;
 import com.example.PrescriptionCRUD.repositories.PatientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,8 +28,10 @@ public class PatientService {
         }
     }
 
-    public List<Patient> getAllPatients (){
-        return patientRepository.findAll();
+    public List<PatientCreateDTO> getAllPatients (){
+
+        List<Patient> patientList = patientRepository.findAll();
+        return patientList.stream().map(PatientMapper.INSTANCE::patientToPatientDTO).collect(Collectors.toList());
     }
 
     public void addPatient(Patient patient){
