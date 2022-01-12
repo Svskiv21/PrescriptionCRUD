@@ -1,9 +1,10 @@
 package com.example.PrescriptionCRUD.entities;
 
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -38,9 +39,9 @@ public class Prescription {
 
     @NonNull
     @Column
-    private Date dateOfIssue;
+    private LocalDate dateOfIssue;
 
     @NonNull
     @Column
-    private Date expirationDate;
+    private LocalDate expirationDate;
 }

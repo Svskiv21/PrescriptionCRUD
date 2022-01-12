@@ -12,11 +12,11 @@ public class PrescriptionShowDTO {
 
     private Long id;
 
-    private Long doctorId;
+    private DoctorShowDTO doctor;
 
-    private Long patientId;
+    private PatientShowDTO patient;
 
-    private List<Long> medicineIds;
+    private List<MedicineCreateDTO> medicineList;
 
     private LocalDate dateOfIssue;
 
