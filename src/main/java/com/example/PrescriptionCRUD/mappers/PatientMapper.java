@@ -1,6 +1,7 @@
 package com.example.PrescriptionCRUD.mappers;
 
 import com.example.PrescriptionCRUD.dtos.PatientCreateDTO;
+import com.example.PrescriptionCRUD.dtos.PatientShowDTO;
 import com.example.PrescriptionCRUD.entities.Patient;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -12,7 +13,7 @@ public interface PatientMapper {
 
     public static final PatientMapper INSTANCE = Mappers.getMapper(PatientMapper.class);
 
-    PatientCreateDTO patientToPatientDTO(Patient patient);
+    PatientShowDTO patientToPatientShowDTO(Patient patient);
 
     Patient patientDTOtoPatient(PatientCreateDTO patientCreateDTO);
 }

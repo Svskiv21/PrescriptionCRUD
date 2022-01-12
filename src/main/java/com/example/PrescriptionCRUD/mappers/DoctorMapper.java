@@ -1,6 +1,7 @@
 package com.example.PrescriptionCRUD.mappers;
 
 import com.example.PrescriptionCRUD.dtos.DoctorCreateDTO;
+import com.example.PrescriptionCRUD.dtos.DoctorShowDTO;
 import com.example.PrescriptionCRUD.entities.Doctor;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -11,7 +12,7 @@ public interface DoctorMapper {
 
     public static final DoctorMapper INSTANCE = Mappers.getMapper(DoctorMapper.class);
 
-    public Doctor doctorDTOtoDoctor(DoctorCreateDTO doctorDTO);
+    Doctor doctorDTOtoDoctor(DoctorCreateDTO doctorDTO);
 
-    public DoctorCreateDTO doctorToDoctorDTO(Doctor doctor);
+    DoctorShowDTO doctorToDoctorShowDTO(Doctor doctor);
 }
