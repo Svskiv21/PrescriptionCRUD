@@ -11,7 +11,7 @@ public interface MedicineMapper {
 
     public static final MedicineMapper INSTANCE = Mappers.getMapper(MedicineMapper.class);
 
-    public Medicine medicineDTOtoMedicine(MedicineCreateDTO medicineDTO);
+    Medicine medicineDTOtoMedicine(MedicineCreateDTO medicineDTO);
 
-    public MedicineCreateDTO medicineToMedicineDTO(Medicine medicine);
+    MedicineCreateDTO medicineToMedicineDTO(Medicine medicine);
 }
