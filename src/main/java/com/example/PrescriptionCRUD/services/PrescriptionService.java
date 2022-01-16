@@ -75,6 +75,7 @@ public class PrescriptionService {
         return prescription;
     }
 
+    @Transactional
     public void deletePrescription(Long prescriptionId){
         prescriptionRepository.deleteById(prescriptionId);
     }

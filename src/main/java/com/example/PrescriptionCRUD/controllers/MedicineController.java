@@ -1,7 +1,7 @@
 package com.example.PrescriptionCRUD.controllers;
 
 
-import com.example.PrescriptionCRUD.entities.Medicine;
+import com.example.PrescriptionCRUD.dtos.MedicineCreateDTO;
 import com.example.PrescriptionCRUD.services.MedicineService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +16,23 @@ public class MedicineController {
     private final MedicineService medicineService;
 
     @GetMapping
-    public List<Medicine> showAllMedicines(Medicine medicine){
-        return medicineService.getAllMeds();
+    public List<MedicineCreateDTO> showAllMedicines(){
+        return medicineService.getMedicines();
+    }
+
+    @GetMapping("{medicineId}")
+    public MedicineCreateDTO showMedicine(@PathVariable Long medicineId){
+        return medicineService.getMedicine(medicineId);
     }
 
     @PostMapping
-    public void addNewMedicine(@RequestBody Medicine medicine){
-        medicineService.addNewMedicine(medicine);
+    public void addNewMedicine(@RequestBody MedicineCreateDTO medicineCreateDTO){
+        medicineService.addNewMedicine(medicineCreateDTO);
+    }
+
+    @PutMapping("{medicineId}")
+    public void updateMedicine(@PathVariable Long medicineId, @RequestParam(required = false) String name, @RequestParam(required = false) String description){
+        medicineService.updateMedicine(medicineId, name, description);
     }
 
     @DeleteMapping("{medicineId}")
