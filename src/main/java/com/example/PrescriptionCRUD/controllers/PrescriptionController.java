@@ -18,8 +18,8 @@ public class PrescriptionController {
 
     @GetMapping
     @PreAuthorize("hasAnyRole('ROLE_DOCTOR', 'ROLE_PATIENT', 'ROLE_ADMIN')")
-    public List<PrescriptionShowDTO> getPrescriptions(){
-        return prescriptionService.getPrescriptions();
+    public List<PrescriptionShowDTO> getPrescriptions(Long userId){
+        return prescriptionService.getPrescriptions(userId);
     }
 
     @PostMapping
