@@ -28,6 +28,7 @@ public class DoctorService {
 
     public void addNewDoctor(DoctorCreateDTO doctorCreateDTO) {
 //        Optional<Doctor> doctorOptional = doctorRepository.findByPesel(doctorCreateDTO.getPesel());
+
 //        if (doctorOptional.isEmpty()){
 //            Doctor doctor = doctorOptional.get();
 //            if(doctorCreateDTO.getPesel() != null && doctorCreateDTO.getPesel().length() > 0){
