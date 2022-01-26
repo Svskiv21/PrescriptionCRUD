@@ -29,7 +29,7 @@ public class PrescriptionService {
     private final PatientRepository patientRepository;
     private final MedicineRepository medicineRepository;
 
-    public List<PrescriptionShowDTO> getPrescriptions (Long userId){
+    public List<PrescriptionShowDTO> getPrescriptions (){
         List<Prescription> allPrescriptions = prescriptionRepository.findAll();
         return allPrescriptions.stream().map(PrescriptionMapper.INSTANCE::prescriptionToPrescriptionDTO)
                 .collect(Collectors.toList());

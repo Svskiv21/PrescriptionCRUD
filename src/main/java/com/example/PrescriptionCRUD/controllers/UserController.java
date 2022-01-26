@@ -13,6 +13,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/registration")
+    @PreAuthorize("hasAnyRole('ROLE_DOCTOR', 'ROLE_PATIENT', 'ROLE_ADMIN')")
     public void register(@RequestBody UserDTO userDTO){
         userService.createUser(userDTO);
     }
