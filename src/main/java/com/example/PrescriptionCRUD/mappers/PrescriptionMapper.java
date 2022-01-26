@@ -25,8 +25,8 @@ public interface PrescriptionMapper {
     @Mapping(source = "prescription.medicines", target = "medicineList")
     PrescriptionShowDTO prescriptionToPrescriptionDTO (Prescription prescription);
 
-    @Named("test123")
-    static List<Long> test123(Prescription prescription) {
+    @Named("dupa")
+    static List<Long> dupa(Prescription prescription) {
         return prescription.getMedicines().stream().map(Medicine::getId).collect(Collectors.toList());
     }
 }
