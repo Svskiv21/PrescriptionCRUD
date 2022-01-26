@@ -35,6 +35,7 @@ public class DoctorService {
 //                doctor.setPesel(doctorCreateDTO.getPesel());
 //            } else {
 //                throw new IllegalStateException("Invalid pesel!");
+        //CLEAN CRUD
 //            }
 //            if (doctorCreateDTO.getName())
 //        }
