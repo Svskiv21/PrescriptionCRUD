@@ -6,9 +6,6 @@ import com.example.PrescriptionCRUD.entities.UserType;
 import com.example.PrescriptionCRUD.mappers.UserMapper;
 import com.example.PrescriptionCRUD.repositories.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserService {
 
     private final UserRepository userRepository;
     private final PatientService patientService;
@@ -26,7 +23,7 @@ public class UserService implements UserDetailsService {
     public void createUser(UserDTO userDTO){
         Optional<User> optionalUser = userRepository.findByPesel(userDTO.getPesel());
         if (optionalUser.isEmpty()){
-            if (UserType.DOCTOR.equals(userDTO.getUserType())){
+            if (userDTO.getUserType() == UserType.DOCTOR){
                 doctorService.addNewDoctor(UserMapper.INSTANCE.userDTOtoDoctorDTO(userDTO));
             } else {
                 patientService.addPatient(UserMapper.INSTANCE.userDTOtoPatientDTO(userDTO));
@@ -52,12 +49,5 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new IllegalStateException("User does not exist in database."));
 
         userRepository.deleteById(userId);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository
-                .findByPesel(username)
-                .orElseThrow(()->new IllegalStateException("Username " + username + " does not exist in database."));
     }
 }
