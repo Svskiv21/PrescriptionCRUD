@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(maxAge = 3600)
 @RestController
-@RequestMapping("/patients")
+@RequestMapping(value = "/patients")
 @AllArgsConstructor
 public class PatientController {
 

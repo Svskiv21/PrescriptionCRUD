@@ -12,4 +12,6 @@ public class PatientShowDTO {
     private String name;
 
     private String lastName;
+
+    private String pesel;
 }
